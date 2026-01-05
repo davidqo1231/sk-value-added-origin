@@ -771,11 +771,19 @@
           })
           .on("mouseleave", () => hideTooltip());
 
-        nodesEnter
-          .append("text")
-          .attr("class", "node-label")
-          .attr("text-anchor", "middle")
-          .attr("dominant-baseline", "central");
+	        nodesEnter
+	          .append("text")
+	          .attr("class", "node-label node-label-name")
+	          .attr("text-anchor", "start")
+	          .attr("dominant-baseline", "hanging")
+	          .attr("alignment-baseline", "hanging");
+
+	        nodesEnter
+	          .append("text")
+	          .attr("class", "node-label node-label-value")
+	          .attr("text-anchor", "middle")
+	          .attr("dominant-baseline", "text-after-edge")
+	          .attr("alignment-baseline", "text-after-edge");
 
         nodesEnter.transition().duration(350).style("opacity", 1);
 
@@ -798,10 +806,10 @@
             "is-dimmed",
             (d) => currentIndustry && d.data.id !== currentIndustry
           );
-        merged.select("text").each(function (d) {
-          const w = d.x1 - d.x0;
-          const h = d.y1 - d.y0;
-          const area = w * h;
+	        merged.each(function (d) {
+	          const w = d.x1 - d.x0;
+	          const h = d.y1 - d.y0;
+	          const area = w * h;
 
           const layout = buildLabelLayout(d.data.name, d.value, w, h, {
             maxLines: 4,
@@ -811,42 +819,42 @@
             heightDivisor: 4.6,
           });
 
-          const text = d3.select(this);
-          text.selectAll("tspan").remove();
+	          const node = d3.select(this);
+	          const nameText = node.select("text.node-label-name");
+	          const valueText = node.select("text.node-label-value");
 
-          if (!layout.lines.length && !layout.showValue) {
-            return;
-          }
+	          nameText.selectAll("tspan").remove();
 
-          text
-            .attr("class", "node-label" + (area < 7000 ? " small" : ""))
-            .style("font-size", layout.fontSize + "px")
-            .style("fill", textColorForHex(d.data.color));
+	          if (!layout.lines.length && !layout.showValue) {
+	            valueText.text("");
+	            return;
+	          }
 
-          const padding = 6;
-          const lineHeight = layout.fontSize * 1.18;
-          let y = padding + layout.fontSize;
+	          nameText
+	            .attr("class", "node-label node-label-name" + (area < 7000 ? " small" : ""))
+	            .style("font-size", layout.fontSize + "px")
+	            .style("fill", textColorForHex(d.data.color));
 
-          layout.lines.forEach((line, idx) => {
-            text
-              .append("tspan")
-              .attr("x", padding)
-              .attr("y", y + idx * lineHeight)
-              .attr("text-anchor", "start")
-              .text(line);
-          });
+	          const padding = 6;
+	          const lineHeight = layout.fontSize * 1.18;
+	          nameText.attr("x", padding).attr("y", padding);
 
-          if (layout.showValue) {
-            text
-              .append("tspan")
-              .attr("x", w / 2)
-              .attr("y", h - padding)
-              .attr("text-anchor", "middle")
-              .style("font-size", layout.valueFont + "px")
-              .text(layout.valueText);
-          }
-        });
-      }
+	          layout.lines.forEach((line, idx) => {
+	            nameText
+	              .append("tspan")
+	              .attr("x", padding)
+	              .attr("dy", idx === 0 ? 0 : lineHeight)
+	              .text(line);
+	          });
+
+	          valueText
+	            .style("fill", textColorForHex(d.data.color))
+	            .style("font-size", layout.valueFont + "px")
+	            .attr("x", w / 2)
+	            .attr("y", h - padding)
+	            .text(layout.showValue ? layout.valueText : "");
+	        });
+	      }
 
       function renderCountryTreemap() {
         const rootData = buildCountryHierarchy();
@@ -908,11 +916,19 @@
           })
           .on("mouseleave", () => hideTooltip());
 
-        nodesEnter
-          .append("text")
-          .attr("class", "node-label")
-          .attr("text-anchor", "middle")
-          .attr("dominant-baseline", "central");
+	        nodesEnter
+	          .append("text")
+	          .attr("class", "node-label node-label-name")
+	          .attr("text-anchor", "start")
+	          .attr("dominant-baseline", "hanging")
+	          .attr("alignment-baseline", "hanging");
+
+	        nodesEnter
+	          .append("text")
+	          .attr("class", "node-label node-label-value")
+	          .attr("text-anchor", "middle")
+	          .attr("dominant-baseline", "text-after-edge")
+	          .attr("alignment-baseline", "text-after-edge");
 
         nodesEnter.transition().duration(350).style("opacity", 1);
 
@@ -937,10 +953,10 @@
             "is-dimmed",
             (d) => currentCountry && d.data.id !== currentCountry
           );
-        merged.select("text").each(function (d) {
-          const w = d.x1 - d.x0;
-          const h = d.y1 - d.y0;
-          const area = w * h;
+	        merged.each(function (d) {
+	          const w = d.x1 - d.x0;
+	          const h = d.y1 - d.y0;
+	          const area = w * h;
 
           const layout = buildLabelLayout(d.data.name, d.value, w, h, {
             maxLines: 4,
@@ -950,42 +966,42 @@
             heightDivisor: 3.2,
           });
 
-          const text = d3.select(this);
-          text.selectAll("tspan").remove();
+	          const node = d3.select(this);
+	          const nameText = node.select("text.node-label-name");
+	          const valueText = node.select("text.node-label-value");
 
-          if (!layout.lines.length && !layout.showValue) {
-            return;
-          }
+	          nameText.selectAll("tspan").remove();
 
-          text
-            .attr("class", "node-label" + (area < 7000 ? " small" : ""))
-            .style("font-size", layout.fontSize + "px")
-            .style("fill", textColorForHex(d.data.color));
+	          if (!layout.lines.length && !layout.showValue) {
+	            valueText.text("");
+	            return;
+	          }
 
-          const padding = 6;
-          const lineHeight = layout.fontSize * 1.18;
-          let y = padding + layout.fontSize;
+	          nameText
+	            .attr("class", "node-label node-label-name" + (area < 7000 ? " small" : ""))
+	            .style("font-size", layout.fontSize + "px")
+	            .style("fill", textColorForHex(d.data.color));
 
-          layout.lines.forEach((line, idx) => {
-            text
-              .append("tspan")
-              .attr("x", padding)
-              .attr("y", y + idx * lineHeight)
-              .attr("text-anchor", "start")
-              .text(line);
-          });
+	          const padding = 6;
+	          const lineHeight = layout.fontSize * 1.18;
+	          nameText.attr("x", padding).attr("y", padding);
 
-          if (layout.showValue) {
-            text
-              .append("tspan")
-              .attr("x", w / 2)
-              .attr("y", h - padding)
-              .attr("text-anchor", "middle")
-              .style("font-size", layout.valueFont + "px")
-              .text(layout.valueText);
-          }
-        });
-      }
+	          layout.lines.forEach((line, idx) => {
+	            nameText
+	              .append("tspan")
+	              .attr("x", padding)
+	              .attr("dy", idx === 0 ? 0 : lineHeight)
+	              .text(line);
+	          });
+
+	          valueText
+	            .style("fill", textColorForHex(d.data.color))
+	            .style("font-size", layout.valueFont + "px")
+	            .attr("x", w / 2)
+	            .attr("y", h - padding)
+	            .text(layout.showValue ? layout.valueText : "");
+	        });
+	      }
 
       function initApp(data) {
         dataCache = data;
