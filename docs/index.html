@@ -442,9 +442,13 @@
       let industrySvg = null;
       let countrySvg = null;
 
-      const tooltip = d3.select("#tooltip");
-      const selectedLabelEl = document.getElementById("selected-industry-label");
-      const resetButtonEl = document.getElementById("reset-selection");
+	      const tooltip = d3.select("#tooltip");
+	      const selectedLabelEl = document.getElementById("selected-industry-label");
+	      const resetButtonEl = document.getElementById("reset-selection");
+	      const IS_SAFARI = (() => {
+	        const ua = navigator.userAgent || "";
+	        return /Safari/.test(ua) && !/Chrome|Chromium|Edg|OPR/.test(ua);
+	      })();
 
       function textColorForHex(hex) {
         if (!hex || typeof hex !== "string" || !hex.startsWith("#")) {
@@ -837,7 +841,10 @@
 
 	          const padding = 6;
 	          const lineHeight = layout.fontSize * 1.18;
-	          nameText.attr("x", padding).attr("y", padding);
+	          const safariNameOffset = IS_SAFARI
+	            ? Math.max(1, Math.round(layout.fontSize * 0.22))
+	            : 0;
+	          nameText.attr("x", padding).attr("y", padding + safariNameOffset);
 
 	          layout.lines.forEach((line, idx) => {
 	            nameText
@@ -984,7 +991,10 @@
 
 	          const padding = 6;
 	          const lineHeight = layout.fontSize * 1.18;
-	          nameText.attr("x", padding).attr("y", padding);
+	          const safariNameOffset = IS_SAFARI
+	            ? Math.max(1, Math.round(layout.fontSize * 0.22))
+	            : 0;
+	          nameText.attr("x", padding).attr("y", padding + safariNameOffset);
 
 	          layout.lines.forEach((line, idx) => {
 	            nameText
