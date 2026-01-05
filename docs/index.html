@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pôvod pridanej hodnoty – Slovensko (OECD TiVA)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+      :root {
+        --bg-page: #F1F0F0;
+        --bg-card: #FBEEE7;
+        --border-subtle: rgba(17, 24, 39, 0.10);
+        --border-strong: rgba(17, 24, 39, 0.14);
+        --text-main: #111827;
+        --text-muted: rgba(17, 24, 39, 0.55);
+        --text-faint: rgba(17, 24, 39, 0.38);
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        --accent: #E083AC;
+        --shadow-card: 0 1px 0 rgba(17, 24, 39, 0.04),
+          0 12px 18px rgba(17, 24, 39, 0.18);
+        --shadow-soft: 0 6px 16px rgba(17, 24, 39, 0.10);
+        --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9),
+          inset 0 0 0 1px rgba(17, 24, 39, 0.10);
+        --radius-lg: 4px;
+        --radius-md: 3px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+          Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        background: radial-gradient(circle at top left, #FBEEE7, #F1F0F0 58%);
+        color: var(--text-main);
+      }
+
+      .page {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 18px 20px 44px;
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: 240px minmax(280px, 1fr);
+        align-items: center;
+        gap: 16px;
+        padding: 10px 2px 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 650;
+        letter-spacing: 0.01em;
+        color: rgba(17, 24, 39, 0.92);
+      }
+
+      .brand-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 8px 18px rgba(249, 115, 22, 0.35);
+      }
+
+      .topbar-center {
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--text-muted);
+        text-align: left;
+      }
+
+      .divider {
+        height: 1px;
+        background: rgba(17, 24, 39, 0.08);
+        margin: 0 2px 14px;
+      }
+
+	      .content {
+	        display: grid;
+	        grid-template-columns: repeat(2, minmax(0, 1fr));
+	        gap: 18px;
+	        align-items: stretch;
+	      }
+
+	      .panel {
+	        background: rgba(251, 238, 231, 0.82);
+	        border-radius: var(--radius-lg);
+	        padding: 12px 12px 4px;
+	        box-shadow: var(--shadow-card);
+	        border: 1px solid rgba(17, 24, 39, 0.12);
+	        display: flex;
+	        flex-direction: column;
+	        gap: 0;
+	        height: 100%;
+	      }
+
+	      .panel-header {
+	        display: flex;
+	        align-items: flex-start;
+	        justify-content: space-between;
+	        gap: 12px;
+	        margin-bottom: 0;
+	        min-height: 84px;
+	      }
+
+      .panel-kicker {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+        margin-bottom: 0;
+      }
+
+	      .panel-kicker-row {
+	        display: flex;
+	        align-items: center;
+	        gap: 12px;
+	        margin-bottom: 1px;
+	      }
+
+      .panel-kicker-row::after {
+        content: "";
+        height: 1px;
+        background: rgba(17, 24, 39, 0.10);
+        flex: 1;
+      }
+
+      .panel-title {
+        font-size: 18px;
+        font-weight: 650;
+        margin: 0;
+      }
+
+      .panel-caption {
+        margin: 0;
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.35;
+      }
+
+      .panel-caption strong {
+        color: var(--accent);
+      }
+
+      .panel-subheader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 10px;
+        border-radius: 3px;
+        background: rgba(241, 240, 240, 0.75);
+        border: 1px solid rgba(17, 24, 39, 0.10);
+        font-size: 11px;
+        color: rgba(17, 24, 39, 0.62);
+        box-shadow: 0 8px 12px rgba(17, 24, 39, 0.08);
+      }
+
+      .pill-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(17, 24, 39, 0.22);
+      }
+
+      .pill-strong {
+        font-weight: 600;
+        color: var(--text-main);
+      }
+
+	      .pill-button {
+	        font-family: inherit;
+	        border: none;
+	        border-radius: 3px;
+	        padding: 9px 12px;
+	        background: rgba(241, 240, 240, 0.75);
+	        border: 1px solid rgba(17, 24, 39, 0.10);
+	        color: rgba(17, 24, 39, 0.82);
+	        font-size: 11px;
+	        font-weight: 500;
+	        cursor: pointer;
+	        box-shadow: 0 8px 16px rgba(17, 24, 39, 0.12);
+	        display: inline-flex;
+	        align-items: center;
+	        gap: 6px;
+	        position: relative;
+	        letter-spacing: 0.02em;
+	        text-transform: uppercase;
+	        outline: none;
+	        appearance: none;
+	        -webkit-appearance: none;
+	      }
+
+	      .pill-button:hover {
+	        filter: brightness(0.98);
+	      }
+
+	      .pill-button:active {
+	        transform: translateY(1px) scale(0.995);
+	        box-shadow: 0 6px 10px rgba(17, 24, 39, 0.2) inset;
+	      }
+
+      .pill-button::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        opacity: 0;
+        transition: opacity 140ms ease;
+        pointer-events: none;
+      }
+
+      .pill-button:hover::after {
+        opacity: 1;
+      }
+
+      .pill-button span {
+        font-size: 12px;
+      }
+
+      .chart {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 3px;
+        overflow: hidden;
+        background: transparent;
+        border: none;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+	      .node-rect {
+	        stroke: rgba(255, 255, 255, 0.92);
+	        stroke-width: 0.35;
+	        cursor: pointer;
+	        transition: filter 160ms ease, stroke 160ms ease, stroke-width 160ms ease;
+	      }
+
+      .node-rect.industry {
+        rx: 2;
+        ry: 2;
+      }
+
+      .node-rect.country {
+        rx: 2;
+        ry: 2;
+      }
+
+	      .node-rect:hover {
+	        stroke: rgba(17, 24, 39, 0.14);
+	        stroke-width: 0.8;
+	        filter: brightness(1.01);
+	      }
+
+	      .node-rect.is-selected {
+	        stroke: rgba(17, 24, 39, 0.28);
+	        stroke-width: 1.2;
+	        filter: drop-shadow(0 10px 14px rgba(17, 24, 39, 0.14))
+	          brightness(1.02);
+	      }
+
+      .node-rect.is-dimmed {
+        opacity: 0.62;
+      }
+
+      .node-label {
+        fill: #f9fafb;
+        pointer-events: none;
+        font-weight: 400;
+        text-shadow: 0 1px 2px rgba(15, 23, 42, 0.35);
+      }
+
+      .node-label.small {
+        font-weight: 400;
+        opacity: 0.9;
+      }
+
+      .tooltip {
+        position: fixed;
+        pointer-events: none;
+        background: rgba(17, 24, 39, 0.92);
+        color: #f9fafb;
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        line-height: 1.4;
+        box-shadow: 0 18px 40px rgba(17, 24, 39, 0.50);
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity 140ms ease-out, transform 140ms ease-out;
+        z-index: 100;
+      }
+
+      .tooltip.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .tooltip-title {
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      .tooltip-value {
+        color: #e5e7eb;
+      }
+
+      .tooltip-meta {
+        color: #9ca3af;
+        font-size: 11px;
+        margin-top: 2px;
+      }
+
+	      @media (max-width: 960px) {
+	        .topbar {
+	          grid-template-columns: 1fr;
+	        }
+
+	        .panel-header {
+	          min-height: unset;
+	        }
+
+	        .panel {
+	          padding: 12px 12px 8px;
+	        }
+
+        .chart {
+          aspect-ratio: 4 / 3.2;
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .content {
+          gap: 12px;
+        }
+
+        .panel {
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span>Pôvod pridanej hodnoty</span>
+        </div>
+	        <div class="topbar-center">
+	          OECD TiVA (2022): pôvod pridanej hodnoty vytvorenej v slovenskej
+	          ekonomike – vľavo odvetvia tvorby pridanej hodnoty, vpravo krajiny
+	          konečného dopytu. Hodnoty sú v miliónoch dolárov (mil. $).
+	        </div>
+      </header>
+      <div class="divider"></div>
+
+      <main id="viz" class="content">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-kicker-row">
+                <div class="panel-kicker">ODVETVIA</div>
+              </div>
+              <h2 class="panel-title">Odvetvia tvorby pridanej hodnoty</h2>
+              <p class="panel-caption">
+                <strong>Klikni na odvetvie</strong> a pravý graf zobrazí, ktoré
+                krajiny svojou konečnou spotrebou vytvárajú túto pridanú
+                hodnotu.
+              </p>
+            </div>
+            <div class="pill">
+              <span class="pill-dot"></span>
+              <span>veľkosť obdĺžnika = pridaná hodnota</span>
+            </div>
+          </div>
+          <div id="industry-chart" class="chart"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-kicker-row">
+                <div class="panel-kicker">KRAJINY</div>
+              </div>
+              <h2 class="panel-title">Geografická štruktúra konečného dopytu</h2>
+              <div class="panel-subheader">
+                <p class="panel-caption">
+                  Výber: <span id="selected-industry-label"><strong>Všetky odvetvia</strong></span>
+                </p>
+              </div>
+            </div>
+            <button id="reset-selection" class="pill-button" type="button">
+              <span>Všetky odvetvia</span>
+            </button>
+          </div>
+          <div id="country-chart" class="chart"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="tooltip" class="tooltip">
+      <div class="tooltip-title"></div>
+      <div class="tooltip-value"></div>
+      <div class="tooltip-meta"></div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+      const chartWidth = 640;
+      const chartHeight = 420;
+
+      let dataCache = null;
+      let currentIndustry = null;
+      let currentCountry = null;
+      let industrySvg = null;
+      let countrySvg = null;
+
+      const tooltip = d3.select("#tooltip");
+      const selectedLabelEl = document.getElementById("selected-industry-label");
+      const resetButtonEl = document.getElementById("reset-selection");
+
+      function textColorForHex(hex) {
+        if (!hex || typeof hex !== "string" || !hex.startsWith("#")) {
+          return "#f9fafb";
+        }
+        const value = hex.slice(1);
+        if (value.length !== 6) return "#f9fafb";
+        const r = parseInt(value.slice(0, 2), 16) / 255;
+        const g = parseInt(value.slice(2, 4), 16) / 255;
+        const b = parseInt(value.slice(4, 6), 16) / 255;
+        const toLinear = (c) =>
+          c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        const rl = toLinear(r);
+        const gl = toLinear(g);
+        const bl = toLinear(b);
+        const luminance = 0.2126 * rl + 0.7152 * gl + 0.0722 * bl;
+        return luminance > 0.62 ? "#0f172a" : "#f9fafb";
+      }
+
+      function formatValue(v) {
+        if (v == null || Number.isNaN(v)) return "";
+        return (
+          v.toLocaleString("sk-SK", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          }) + " mil. $"
+        );
+      }
+
+	      function estimateTextWidth(text, fontSize) {
+	        // približný odhad šírky v px pre JetBrains Mono (konzervatívny, ale nie príliš)
+	        return (text || "").length * fontSize * 0.56;
+	      }
+
+	      const textMeasureCanvas = document.createElement("canvas");
+	      const textMeasureCtx = textMeasureCanvas.getContext("2d");
+
+	      function measureTextWidth(text, fontSize, fontWeight = 400) {
+	        if (!text || !fontSize) return 0;
+	        if (!textMeasureCtx) return estimateTextWidth(text, fontSize);
+	        textMeasureCtx.font = `${fontWeight} ${fontSize}px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`;
+	        return textMeasureCtx.measureText(text).width;
+	      }
+
+	      function wrapWordsToLines(words, maxWidthPx, fontSize, fontWeight = 400) {
+	        const lines = [];
+	        let current = "";
+
+	        for (const word of words) {
+	          const tentative = current ? current + " " + word : word;
+	          if (measureTextWidth(tentative, fontSize, fontWeight) <= maxWidthPx) {
+	            current = tentative;
+	            continue;
+	          }
+
+	          if (current) lines.push(current);
+	          current = word;
+	        }
+
+	        if (current) lines.push(current);
+	        return lines;
+	      }
+
+	      function truncateToFit(text, maxWidthPx, fontSize, fontWeight = 400) {
+	        if (measureTextWidth(text, fontSize, fontWeight) <= maxWidthPx) return text;
+	        const ellipsis = "…";
+	        if (measureTextWidth(ellipsis, fontSize, fontWeight) > maxWidthPx) return "";
+
+	        let lo = 0;
+	        let hi = text.length;
+	        while (lo < hi) {
+	          const mid = Math.floor((lo + hi) / 2);
+	          const candidate = text.slice(0, mid) + ellipsis;
+	          if (measureTextWidth(candidate, fontSize, fontWeight) <= maxWidthPx) {
+	            lo = mid + 1;
+	          } else {
+	            hi = mid;
+	          }
+	        }
+
+	        const finalLen = Math.max(0, lo - 1);
+	        if (finalLen <= 0) return ellipsis;
+	        return text.slice(0, finalLen) + ellipsis;
+	      }
+
+	      function buildLabelLayout(name, value, width, height, opts) {
+	        const options = opts || {};
+	        const area = width * height;
+	        const minAreaForText = options.minAreaForText ?? 2500;
+	        const minAreaForValue = options.minAreaForValue ?? 9000;
+	        const padding = options.padding ?? 6;
+	        const maxLines = options.maxLines ?? 3;
+	        const minFont = options.minFont ?? 6;
+	        const maxFont = options.maxFont ?? 20;
+	        const fontWeight = options.fontWeight ?? 400;
+
+	        if (area < minAreaForText) {
+	          return { lines: [], showValue: false, valueText: "", fontSize: 0, valueFont: 0 };
+	        }
+
+        // základ: škáluj podľa šírky aj výšky, ale umožni väčší font pri krajinách
+	        let fontSize = Math.min(width / (options.widthDivisor ?? 9.5), height / (options.heightDivisor ?? 3.6));
+	        fontSize = Math.max(minFont, Math.min(maxFont, fontSize));
+
+	        const words = (name || "").split(/\s+/).filter(Boolean);
+	        const maxWidthPx = Math.max(10, width - padding * 2);
+
+        const valueText = area >= minAreaForValue ? formatValue(value) : "";
+	        let showValue = Boolean(valueText);
+
+	        function valueFits(vFont) {
+	          return measureTextWidth(valueText, vFont, fontWeight) <= maxWidthPx;
+	        }
+
+	        let valueFont = Math.max(minFont, Math.min(fontSize, 14));
+	        if (showValue && !valueFits(valueFont)) {
+	          // ak hodnota nevychádza, zmenši ju alebo skry
+	          const shrink = Math.max(minFont, Math.floor((maxWidthPx / Math.max(1, valueText.length)) * 1.3));
+	          valueFont = Math.max(minFont, Math.min(valueFont, shrink));
+	          if (!valueFits(valueFont)) showValue = false;
+	        }
+
+	        // iteratívne dolaďovanie: wrap + shrink, aby sa text zmestil aj do nízkych, širokých dlaždíc
+	        for (let iter = 0; iter < 22; iter++) {
+	          let lines = wrapWordsToLines(words, maxWidthPx, fontSize, fontWeight);
+
+	          // príliš veľa riadkov: preferuj zmenšenie fontu pred skracovaním názvu
+	          if (lines.length > maxLines && fontSize > minFont) {
+	            fontSize = Math.max(minFont, fontSize - 1);
+	            continue;
+	          }
+	          lines = lines.slice(0, maxLines);
+
+	          const lineHeight = fontSize * 1.18;
+	          const reservedForValue = showValue ? valueFont * 1.25 + 4 : 0;
+	          const availableHeight = Math.max(0, height - padding * 2);
+	          const neededHeight = lines.length * lineHeight + reservedForValue;
+
+	          if (neededHeight > availableHeight && fontSize > minFont) {
+	            fontSize = Math.max(minFont, fontSize - 1);
+	            continue;
+	          }
+
+	          // ak sa hodnota nevychádza do výšky, skry ju (a skús znovu)
+	          if (showValue && neededHeight > availableHeight) {
+	            showValue = false;
+	            continue;
+	          }
+
+	          // ak je niektorý riadok stále príliš široký, zmenši font
+	          const widest = lines.reduce(
+	            (m, line) => Math.max(m, measureTextWidth(line, fontSize, fontWeight)),
+	            0
+	          );
+	          if (widest > maxWidthPx && fontSize > minFont) {
+	            fontSize = Math.max(minFont, fontSize - 1);
+	            continue;
+	          }
+
+	          // posledná záchrana pri minFont: radšej prvé slovo (žiadne "Poľs")
+	          if (widest > maxWidthPx && fontSize <= minFont && words.length > 1) {
+	            const firstWord = words[0];
+	            lines = [firstWord];
+	          }
+
+	          // finálny bezpečnostný krok: ak riadok stále prečnie, skracuj s ellipsou
+	          lines = lines.map((line) => truncateToFit(line, maxWidthPx, fontSize, fontWeight)).filter(Boolean);
+
+	          // ak sme prišli o text a dlaždica nie je úplne malá, skús ešte prvé slovo
+	          if (!lines.length && words.length) {
+	            const firstWord = words[0];
+	            const truncated = truncateToFit(firstWord, maxWidthPx, fontSize, fontWeight);
+	            if (truncated) lines = [truncated];
+	          }
+
+	          return { lines, showValue, valueText, fontSize, valueFont };
+	        }
+
+	        return { lines: [], showValue: false, valueText: "", fontSize: 0, valueFont: 0 };
+	      }
+
+      function showTooltip(name, value, event, meta) {
+        tooltip
+          .classed("visible", true)
+          .select(".tooltip-title")
+          .text(name || "");
+        tooltip.select(".tooltip-value").text(formatValue(value));
+        tooltip
+          .select(".tooltip-meta")
+          .text(meta || "");
+
+        const padding = 12;
+        tooltip
+          .style("left", event.clientX + padding + "px")
+          .style("top", event.clientY + padding + "px");
+      }
+
+      function hideTooltip() {
+        tooltip.classed("visible", false);
+      }
+
+      function buildIndustryHierarchy() {
+        if (!dataCache) {
+          return { name: "Spolu VA", children: [] };
+        }
+
+        // Ak je vybraná krajina, zobrazíme rozpad podľa odvetví
+        if (currentCountry) {
+          const children = dataCache.industries
+            .map((d) => {
+              const rows = dataCache.byIndustry[d.code] || [];
+              const match = rows.find(
+                (r) => r.countryCode === currentCountry
+              );
+              const value = match ? match.value : 0;
+              return {
+                id: d.code,
+                name: d.label,
+                rawLabel: d.label,
+                group: d.group,
+                color: d.color,
+                value,
+              };
+            })
+            .filter((d) => d.value > 0);
+
+          return {
+            name: "Spolu VA",
+            children,
+          };
+        }
+
+        // Inak zobrazenie podľa odvetví naprieč všetkými krajinami
+        return {
+          name: "Spolu VA",
+          children: dataCache.industries.map((d) => ({
+            id: d.code,
+            name: d.label,
+            rawLabel: d.label,
+            group: d.group,
+            color: d.color,
+            value: d.value,
+          })),
+        };
+      }
+
+      function buildCountryHierarchy() {
+        const key = currentIndustry || "_all";
+        const items = dataCache.byIndustry[key] || [];
+        return {
+          name: "Krajiny",
+          children: items.map((d) => ({
+            id: d.countryCode,
+            name: d.countryName,
+            regionKey: d.regionKey,
+            regionLabel: d.regionLabel,
+            color: d.color,
+            value: d.value,
+          })),
+        };
+      }
+
+      function renderIndustryTreemap() {
+        const rootData = buildIndustryHierarchy();
+        const root = d3
+          .hierarchy(rootData)
+          .sum((d) => d.value)
+          .sort((a, b) => b.value - a.value);
+
+	        const treemapLayout = d3
+	          .treemap()
+	          .size([chartWidth, chartHeight])
+	          .paddingInner(0.05)
+	          .round(true);
+
+        treemapLayout(root);
+
+        if (!industrySvg) {
+          industrySvg = d3
+            .select("#industry-chart")
+            .append("svg")
+            .attr("viewBox", `0 0 ${chartWidth} ${chartHeight}`)
+            .attr("preserveAspectRatio", "xMidYMid meet");
+        }
+
+        const leaves = root.leaves();
+
+        const nodes = industrySvg
+          .selectAll("g.node")
+          .data(leaves, (d) => d.data.id);
+
+        const nodesEnter = nodes
+          .enter()
+          .append("g")
+          .attr("class", "node")
+          .attr("transform", (d) => `translate(${d.x0},${d.y0})`)
+          .style("opacity", 0);
+
+        nodesEnter
+          .append("rect")
+          .attr("class", "node-rect industry")
+          .attr("width", (d) => d.x1 - d.x0)
+          .attr("height", (d) => d.y1 - d.y0)
+          .on("click", (_, d) => {
+            // prepnutie do režimu výberu odvetvia (reset krajiny)
+            currentCountry = null;
+            if (currentIndustry === d.data.id) {
+              currentIndustry = null;
+              selectedLabelEl.innerHTML = "<strong>Všetky odvetvia</strong>";
+            } else {
+              currentIndustry = d.data.id;
+              selectedLabelEl.innerHTML = `<strong>${d.data.name}</strong>`;
+            }
+            renderIndustryTreemap();
+            renderCountryTreemap();
+          })
+          .on("mousemove", (event, d) => {
+            showTooltip(
+              d.data.name,
+              d.value,
+              event,
+              d.data.group || ""
+            );
+          })
+          .on("mouseleave", () => hideTooltip());
+
+        nodesEnter
+          .append("text")
+          .attr("class", "node-label")
+          .attr("text-anchor", "middle")
+          .attr("dominant-baseline", "central");
+
+        nodesEnter.transition().duration(350).style("opacity", 1);
+
+        nodes
+          .transition()
+          .duration(350)
+          .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
+
+        nodes.exit().transition().duration(200).style("opacity", 0).remove();
+
+        const merged = nodesEnter.merge(nodes);
+
+        merged
+          .select("rect")
+          .attr("width", (d) => d.x1 - d.x0)
+          .attr("height", (d) => d.y1 - d.y0)
+          .attr("fill", (d) => d.data.color || "#9ca3af")
+          .classed("is-selected", (d) => d.data.id === currentIndustry)
+          .classed(
+            "is-dimmed",
+            (d) => currentIndustry && d.data.id !== currentIndustry
+          );
+        merged.select("text").each(function (d) {
+          const w = d.x1 - d.x0;
+          const h = d.y1 - d.y0;
+          const area = w * h;
+
+          const layout = buildLabelLayout(d.data.name, d.value, w, h, {
+            maxLines: 4,
+            maxFont: 18,
+            minFont: 5,
+            widthDivisor: 11.5,
+            heightDivisor: 4.6,
+          });
+
+          const text = d3.select(this);
+          text.selectAll("tspan").remove();
+
+          if (!layout.lines.length && !layout.showValue) {
+            return;
+          }
+
+          text
+            .attr("class", "node-label" + (area < 7000 ? " small" : ""))
+            .style("font-size", layout.fontSize + "px")
+            .style("fill", textColorForHex(d.data.color));
+
+          const padding = 6;
+          const lineHeight = layout.fontSize * 1.18;
+          let y = padding + layout.fontSize;
+
+          layout.lines.forEach((line, idx) => {
+            text
+              .append("tspan")
+              .attr("x", padding)
+              .attr("y", y + idx * lineHeight)
+              .attr("text-anchor", "start")
+              .text(line);
+          });
+
+          if (layout.showValue) {
+            text
+              .append("tspan")
+              .attr("x", w / 2)
+              .attr("y", h - padding)
+              .attr("text-anchor", "middle")
+              .style("font-size", layout.valueFont + "px")
+              .text(layout.valueText);
+          }
+        });
+      }
+
+      function renderCountryTreemap() {
+        const rootData = buildCountryHierarchy();
+        const root = d3
+          .hierarchy(rootData)
+          .sum((d) => d.value)
+          .sort((a, b) => b.value - a.value);
+
+	        const treemapLayout = d3
+	          .treemap()
+	          .size([chartWidth, chartHeight])
+	          .paddingInner(0.05)
+	          .round(true);
+
+        treemapLayout(root);
+
+        if (!countrySvg) {
+          countrySvg = d3
+            .select("#country-chart")
+            .append("svg")
+            .attr("viewBox", `0 0 ${chartWidth} ${chartHeight}`)
+            .attr("preserveAspectRatio", "xMidYMid meet");
+        }
+
+        const leaves = root.leaves();
+
+        const nodes = countrySvg
+          .selectAll("g.node")
+          .data(leaves, (d) => d.data.id);
+
+        const nodesEnter = nodes
+          .enter()
+          .append("g")
+          .attr("class", "node")
+          .attr("transform", (d) => `translate(${d.x0},${d.y0})`)
+          .style("opacity", 0);
+
+        nodesEnter
+          .append("rect")
+          .attr("class", "node-rect country")
+          .attr("width", (d) => d.x1 - d.x0)
+          .attr("height", (d) => d.y1 - d.y0)
+          .on("click", (_, d) => {
+            // prepnutie do režimu výberu krajiny (reset odvetvia)
+            if (currentCountry === d.data.id) {
+              currentCountry = null;
+              selectedLabelEl.innerHTML = "<strong>Všetky odvetvia</strong>";
+            } else {
+              currentCountry = d.data.id;
+              currentIndustry = null;
+              selectedLabelEl.innerHTML = `<strong>${d.data.name}</strong>`;
+            }
+            renderIndustryTreemap();
+            renderCountryTreemap();
+          })
+          .on("mousemove", (event, d) => {
+            const meta = d.data.regionLabel || "";
+            showTooltip(d.data.name, d.value, event, meta);
+          })
+          .on("mouseleave", () => hideTooltip());
+
+        nodesEnter
+          .append("text")
+          .attr("class", "node-label")
+          .attr("text-anchor", "middle")
+          .attr("dominant-baseline", "central");
+
+        nodesEnter.transition().duration(350).style("opacity", 1);
+
+        nodes
+          .transition()
+          .duration(350)
+          .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
+
+        nodes.exit().transition().duration(200).style("opacity", 0).remove();
+
+        const merged = nodesEnter.merge(nodes);
+
+        merged
+          .select("rect")
+          .attr("width", (d) => d.x1 - d.x0)
+          .attr("height", (d) => d.y1 - d.y0)
+          .attr("fill", (d) => d.data.color || "#9ca3af")
+          .classed("is-selected", (d) => d.data.id === currentCountry);
+        merged
+          .select("rect")
+          .classed(
+            "is-dimmed",
+            (d) => currentCountry && d.data.id !== currentCountry
+          );
+        merged.select("text").each(function (d) {
+          const w = d.x1 - d.x0;
+          const h = d.y1 - d.y0;
+          const area = w * h;
+
+          const layout = buildLabelLayout(d.data.name, d.value, w, h, {
+            maxLines: 4,
+            maxFont: 22,
+            minFont: 5,
+            widthDivisor: 8.6,
+            heightDivisor: 3.2,
+          });
+
+          const text = d3.select(this);
+          text.selectAll("tspan").remove();
+
+          if (!layout.lines.length && !layout.showValue) {
+            return;
+          }
+
+          text
+            .attr("class", "node-label" + (area < 7000 ? " small" : ""))
+            .style("font-size", layout.fontSize + "px")
+            .style("fill", textColorForHex(d.data.color));
+
+          const padding = 6;
+          const lineHeight = layout.fontSize * 1.18;
+          let y = padding + layout.fontSize;
+
+          layout.lines.forEach((line, idx) => {
+            text
+              .append("tspan")
+              .attr("x", padding)
+              .attr("y", y + idx * lineHeight)
+              .attr("text-anchor", "start")
+              .text(line);
+          });
+
+          if (layout.showValue) {
+            text
+              .append("tspan")
+              .attr("x", w / 2)
+              .attr("y", h - padding)
+              .attr("text-anchor", "middle")
+              .style("font-size", layout.valueFont + "px")
+              .text(layout.valueText);
+          }
+        });
+      }
+
+      function initApp(data) {
+        dataCache = data;
+
+        resetButtonEl.addEventListener("click", () => {
+          currentIndustry = null;
+          currentCountry = null;
+          selectedLabelEl.innerHTML = "<strong>Všetky odvetvia</strong>";
+          renderIndustryTreemap();
+          renderCountryTreemap();
+        });
+
+        renderIndustryTreemap();
+        renderCountryTreemap();
+      }
+
+      fetch("data.json")
+        .then((res) => res.json())
+        .then((data) => initApp(data))
+        .catch((err) => {
+          console.error("Nepodarilo sa načítať data.json", err);
+          alert(
+            "Nepodarilo sa načítať data.json. Najskôr spusti v koreňovom priečinku 'python interactiveplot.py' a potom v priečinku 'web' jednoduchý server: python -m http.server 8000."
+          );
+        });
+    </script>
+  </body>
+</html>
